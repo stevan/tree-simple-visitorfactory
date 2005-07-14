@@ -1,5 +1,11 @@
 Revision history for Perl extension Tree-Simple-VisitorFactory.
 
+0.06 Wed July 13, 2005
+    - added Tree::Simple::Visitor::VariableDepthClone
+        - added tests and docs for this
+        - bumped up the Tree::Simple version requirement to 
+          support this new Visitor
+
 0.05 Thurs Nov 18 2004
     - now using Scalar::Util::blessed() instead of 
       the convoluted UNIVERSAL::isa() stuff. 

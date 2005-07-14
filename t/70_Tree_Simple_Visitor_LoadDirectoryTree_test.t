@@ -31,7 +31,7 @@ can_ok("Tree::Simple::Visitor::LoadDirectoryTree", 'new');
         my ($item) = @_;
         return 0 if $item eq "Makefile";
         return 0 if $item eq ".DS_Store";
-        return 0 if $item =~ /CVS|cover_db|blib/;
+        return 0 if $item =~ /CVS|cover_db|blib|\.svn/;
         return 1;
     });
     
@@ -59,6 +59,7 @@ can_ok("Tree::Simple::Visitor::LoadDirectoryTree", 'new');
                         Sort.pm 
                         ToNestedArray.pm
                         ToNestedHash.pm
+                        VariableDepthClone.pm
                     VisitorFactory.pm   
         Makefile.PL
         MANIFEST
@@ -80,7 +81,8 @@ can_ok("Tree::Simple::Visitor::LoadDirectoryTree", 'new');
             91_Tree_Simple_Visitor_FromNestedArray_test.t
             92_Tree_Simple_Visitor_ToNestedHash_test.t 
             93_Tree_Simple_Visitor_ToNestedArray_test.t  
-            95_Tree_Simple_Visitor_LoadClassHierarchy_test.t        
+            95_Tree_Simple_Visitor_LoadClassHierarchy_test.t 
+            96_Tree_Simple_Visitor_VariableDepthClone_test.t       
         	pod.t
         	pod_coverage.t
     );
@@ -113,7 +115,7 @@ can_ok("Tree::Simple::Visitor::LoadDirectoryTree", 'new');
         my ($item) = @_;
         return 0 if $item eq "Makefile";
         return 0 if $item eq ".DS_Store";        
-        return 0 if $item =~ /CVS|cover_db|blib/;
+        return 0 if $item =~ /CVS|cover_db|blib|\.svn/;
         return 1;
     });
     
@@ -147,7 +149,8 @@ can_ok("Tree::Simple::Visitor::LoadDirectoryTree", 'new');
                         PreOrderTraversal.pm  
                         Sort.pm  
                         ToNestedArray.pm
-                        ToNestedHash.pm                                            
+                        ToNestedHash.pm 
+                        VariableDepthClone.pm                                           
         t
             10_Tree_Simple_VisitorFactory_test.t
         	20_Tree_Simple_Visitor_PathToRoot_test.t
@@ -165,7 +168,8 @@ can_ok("Tree::Simple::Visitor::LoadDirectoryTree", 'new');
             91_Tree_Simple_Visitor_FromNestedArray_test.t 
             92_Tree_Simple_Visitor_ToNestedHash_test.t 
             93_Tree_Simple_Visitor_ToNestedArray_test.t  
-            95_Tree_Simple_Visitor_LoadClassHierarchy_test.t         
+            95_Tree_Simple_Visitor_LoadClassHierarchy_test.t        
+            96_Tree_Simple_Visitor_VariableDepthClone_test.t 
         	pod.t
         	pod_coverage.t
     );    
@@ -197,7 +201,7 @@ can_ok("Tree::Simple::Visitor::LoadDirectoryTree", 'new');
         my ($item) = @_;
         return 0 if $item eq "Makefile";
         return 0 if $item eq ".DS_Store";        
-        return 0 if $item =~ /CVS|cover_db|blib/;
+        return 0 if $item =~ /CVS|cover_db|blib|\.svn/;
         return 1;
     });
     
@@ -226,7 +230,8 @@ can_ok("Tree::Simple::Visitor::LoadDirectoryTree", 'new');
                         PreOrderTraversal.pm 
                         Sort.pm        
                         ToNestedArray.pm
-                        ToNestedHash.pm                                       
+                        ToNestedHash.pm   
+                        VariableDepthClone.pm                                    
                     VisitorFactory.pm   
         t
             10_Tree_Simple_VisitorFactory_test.t
@@ -245,7 +250,8 @@ can_ok("Tree::Simple::Visitor::LoadDirectoryTree", 'new');
             91_Tree_Simple_Visitor_FromNestedArray_test.t   
             92_Tree_Simple_Visitor_ToNestedHash_test.t 
             93_Tree_Simple_Visitor_ToNestedArray_test.t   
-            95_Tree_Simple_Visitor_LoadClassHierarchy_test.t                    
+            95_Tree_Simple_Visitor_LoadClassHierarchy_test.t     
+            96_Tree_Simple_Visitor_VariableDepthClone_test.t               
         	pod.t
         	pod_coverage.t  
         Changes

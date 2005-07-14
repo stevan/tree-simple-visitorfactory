@@ -4,7 +4,7 @@ package Tree::Simple::VisitorFactory;
 use strict;
 use warnings;
 
-our $VERSION = '0.05';
+our $VERSION = '0.06';
 
 sub new { 
     my ($class) = @_;
@@ -169,6 +169,10 @@ Given a Tree::Simple instance this Visitor will return all the descendents recur
 
 This implements a multi-level sort of a Tree::Simple heirarchy.
 
+=item B<VariableDepthClone>
+
+A Visitor for cloning parts of Tree::Simple hierarchy
+
 =back
 
 =head1 BUGS
@@ -183,24 +187,25 @@ I use B<Devel::Cover> to test the code coverage of my tests, below is the B<Deve
  File                                           stmt branch   cond    sub    pod   time  total
  -------------------------------------------- ------ ------ ------ ------ ------ ------ ------
  Tree/Simple/VisitorFactory.pm                 100.0  100.0    n/a  100.0  100.0    0.4  100.0
- Tree/Simple/Visitor/FindByNodeValue.pm        100.0   69.2   76.2  100.0  100.0   12.7   88.9
- Tree/Simple/Visitor/FindByPath.pm             100.0   87.5   77.8  100.0  100.0    2.1   95.8
- Tree/Simple/Visitor/FindByUID.pm              100.0   69.2   76.2  100.0  100.0    2.4   88.9
- Tree/Simple/Visitor/PathToRoot.pm             100.0   50.0   81.8  100.0  100.0    7.4   90.0
- Tree/Simple/Visitor/GetAllDescendents.pm      100.0  100.0   86.7  100.0  100.0    4.7   97.2
- Tree/Simple/Visitor/Sort.pm                   100.0   66.7   83.3  100.0  100.0    3.3   94.2
- Tree/Simple/Visitor/LoadClassHierarchy.pm     100.0   61.5   33.3  100.0  100.0    1.5   84.9
- Tree/Simple/Visitor/LoadDirectoryTree.pm      100.0   82.1   80.0  100.0  100.0   43.2   91.7
- Tree/Simple/Visitor/CreateDirectoryTree.pm    100.0   71.4   72.2  100.0  100.0    4.7   90.4
- Tree/Simple/Visitor/BreadthFirstTraversal.pm  100.0   66.7   77.8  100.0  100.0    3.0   92.5
- Tree/Simple/Visitor/PostOrderTraversal.pm     100.0   66.7   58.3  100.0  100.0    1.7   86.8
- Tree/Simple/Visitor/PreOrderTraversal.pm      100.0    n/a   33.3  100.0  100.0    0.1   90.5
- Tree/Simple/Visitor/FromNestedArray.pm        100.0   94.4   80.0  100.0  100.0    7.5   95.4
- Tree/Simple/Visitor/FromNestedHash.pm         100.0   91.7   83.3  100.0  100.0    2.5   95.9
- Tree/Simple/Visitor/ToNestedArray.pm          100.0   40.0   77.8  100.0  100.0    1.3   85.7
- Tree/Simple/Visitor/ToNestedHash.pm           100.0   40.0   77.8  100.0  100.0    1.4   85.7
+ Tree/Simple/Visitor/BreadthFirstTraversal.pm  100.0  100.0   66.7  100.0  100.0    2.5   96.3
+ Tree/Simple/Visitor/PostOrderTraversal.pm     100.0  100.0   77.8  100.0  100.0    1.7   96.3
+ Tree/Simple/Visitor/PreOrderTraversal.pm      100.0    n/a   33.3  100.0  100.0    0.7   90.5
+ Tree/Simple/Visitor/CreateDirectoryTree.pm    100.0   85.7   86.7  100.0  100.0    3.4   95.8
+ Tree/Simple/Visitor/LoadClassHierarchy.pm     100.0   73.1   33.3  100.0  100.0    4.9   89.2
+ Tree/Simple/Visitor/LoadDirectoryTree.pm      100.0   89.3   85.2  100.0  100.0   26.1   94.7
+ Tree/Simple/Visitor/FindByNodeValue.pm        100.0  100.0   86.7  100.0  100.0    3.1   98.3
+ Tree/Simple/Visitor/FindByPath.pm             100.0  100.0   66.7  100.0  100.0    1.2   97.9
+ Tree/Simple/Visitor/FindByUID.pm              100.0  100.0   86.7  100.0  100.0    2.9   98.3
+ Tree/Simple/Visitor/GetAllDescendents.pm      100.0  100.0   77.8  100.0  100.0    2.3   97.1
+ Tree/Simple/Visitor/PathToRoot.pm             100.0   87.5   75.0  100.0  100.0    0.8   95.1
+ Tree/Simple/Visitor/Sort.pm                   100.0  100.0   77.8  100.0  100.0    8.8   98.1
+ Tree/Simple/Visitor/ToNestedArray.pm          100.0  100.0   66.7  100.0  100.0    1.5   96.5
+ Tree/Simple/Visitor/ToNestedHash.pm           100.0  100.0   66.7  100.0  100.0    1.4   96.5
+ Tree/Simple/Visitor/FromNestedArray.pm        100.0   94.4   81.8  100.0  100.0    8.1   96.6
+ Tree/Simple/Visitor/FromNestedHash.pm         100.0   91.7   77.8  100.0  100.0    4.8   95.9
+ Tree/Simple/Visitor/VariableDepthClone.pm     100.0  100.0   66.7  100.0  100.0   25.5   97.3
  -------------------------------------------- ------ ------ ------ ------ ------ ------ ------
- Total                                         100.0   72.6   74.8  100.0  100.0  100.0   91.1
+ Total                                         100.0   93.8   76.3  100.0  100.0  100.0   96.1
  -------------------------------------------- ------ ------ ------ ------ ------ ------ ------
 
 =head1 SEE ALSO
@@ -213,7 +218,7 @@ stevan little, E<lt>stevan@iinteractive.comE<gt>
 
 =head1 COPYRIGHT AND LICENSE
 
-Copyright 2004 by Infinity Interactive, Inc.
+Copyright 2004, 2005 by Infinity Interactive, Inc.
 
 L<http://www.iinteractive.com>
 
