@@ -4,7 +4,7 @@ package Tree::Simple::Visitor::FindByPath;
 use strict;
 use warnings;
 
-our $VERSION = '0.02';
+our $VERSION = '0.03';
 
 use Scalar::Util qw(blessed);
 
@@ -70,9 +70,10 @@ sub visit {
     if ($self->includeTrunk()) {
         # if we dont match the root of the path
         # then we have failed already and so return
-        return unless $func->($current_tree, $path[0]);
-        # if we do match, then store the tree in our results
-        push @results => $current_tree;
+        $self->setResults(()) && return 
+            unless $func->($current_tree, $path[0]);
+        # if we do match, then remove it off the path
+        shift @path;
     }
     
     TOP: {
@@ -102,9 +103,12 @@ sub visit {
                 goto TOP;
             }
         }
+   
         # if we do not find a match, then we can fall off 
         # this block and the whole subroutine for that matter
         # since we know the match has failed.
+        push @results => $current_tree 
+            if (@path || $self->{success} == 0) && $current_tree != $tree;
     }
     # we do however, store the 
     # results as far as we got,

@@ -6,7 +6,7 @@ use warnings;
 
 use Scalar::Util 'blessed';
 
-our $VERSION = '0.01';
+our $VERSION = '0.03';
 
 use base qw(Tree::Simple::Visitor);
 
@@ -53,25 +53,27 @@ sub visit {
         $cloned_trunk->setNodeValue(
             Tree::Simple::_cloneNode($tree->getNodeValue())
         );
+        $filter->($tree, $cloned_trunk) if defined $filter;
         $new_tree->addChild($cloned_trunk);
         $new_tree = $cloned_trunk;
     }
     
-    $self->_cloneTree($tree, $new_tree, $self->{clone_depth});
+    $self->_cloneTree($tree, $new_tree, $self->{clone_depth}, $filter);
     
     $self->setResults($new_root);    	    
 }
 
 sub _cloneTree {
-    my ($self, $tree, $clone, $depth) = @_;
+    my ($self, $tree, $clone, $depth, $filter) = @_;
     return if $depth <= 0;
     foreach my $child ($tree->getAllChildren()) {
         my $cloned_child = blessed($child)->new();
         $cloned_child->setNodeValue(
             Tree::Simple::_cloneNode($child->getNodeValue())
         );
+        $filter->($child, $cloned_child) if defined $filter;        
         $clone->addChild($cloned_child);
-        $self->_cloneTree($child, $cloned_child, $depth - 1) unless $child->isLeaf();
+        $self->_cloneTree($child, $cloned_child, $depth - 1, $filter) unless $child->isLeaf();
     }
 }
 

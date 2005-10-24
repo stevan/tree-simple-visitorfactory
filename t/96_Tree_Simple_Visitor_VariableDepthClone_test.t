@@ -72,7 +72,10 @@ can_ok("Tree::Simple::Visitor::VariableDepthClone", 'new');
     isa_ok($visitor, 'Tree::Simple::Visitor::VariableDepthClone');
 
     $visitor->setCloneDepth(1);
-
+    $visitor->setNodeFilter(sub {
+        my ($old, $new) = @_;
+        $new->setNodeValue($old->getNodeValue() . "new");
+    });
     $tree->accept($visitor);
 
     my $cloned = $visitor->getClone();
@@ -81,7 +84,7 @@ can_ok("Tree::Simple::Visitor::VariableDepthClone", 'new');
     $cloned->accept($checker);
     is_deeply(
         [ $checker->getResults() ],
-        [ qw(1 2 3 4) ],
+        [ qw(1new 2new 3new 4new) ],
         '... our results are as expected');
 }
 
@@ -183,6 +186,10 @@ can_ok("Tree::Simple::Visitor::VariableDepthClone", 'new');
 
     $visitor->includeTrunk(1);
     $visitor->setCloneDepth(2);
+    $visitor->setNodeFilter(sub {
+        my ($old, $new) = @_;
+        $new->setNodeValue($old->getNodeValue() . "new");
+    });    
 
     $tree->getChild(0)->accept($visitor);
 
@@ -192,7 +199,7 @@ can_ok("Tree::Simple::Visitor::VariableDepthClone", 'new');
     $cloned->accept($checker);
     is_deeply(
         [ $checker->getResults() ],
-        [ qw(1 1.1 1.2 1.2.1 1.2.2 1.3) ],
+        [ qw(1new 1.1new 1.2new 1.2.1new 1.2.2new 1.3new) ],
         '... our results are as expected');
 }
 
