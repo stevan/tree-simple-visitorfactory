@@ -1,5 +1,8 @@
 Revision history for Perl extension Tree-Simple-VisitorFactory.
 
+0.09 Mon November 7, 2005
+    - fixing an error in the Tree::Simple::Visitor::LoadDirectoryTree test
+
 0.08 Mon July 18, 2005
     - small bug fix in Tree::Simple::Visitor::VariableDepthClone visitor
     - small bug fix with Tree::Simple::Visitor::FindByPath visitor

@@ -16,6 +16,63 @@ use File::Spec;
 
 can_ok("Tree::Simple::Visitor::LoadDirectoryTree", 'new');
 
+my @normal = qw(
+    Changes
+    lib
+        Tree
+            Simple
+                Visitor
+                    BreadthFirstTraversal.pm
+                    CreateDirectoryTree.pm
+                    FindByPath.pm
+                    FindByUID.pm
+                    FindByNodeValue.pm
+                    FromNestedArray.pm                        
+                    FromNestedHash.pm                  
+                    GetAllDescendents.pm
+                    LoadClassHierarchy.pm
+                    LoadDirectoryTree.pm
+                    PathToRoot.pm
+                    PostOrderTraversal.pm 
+                    PreOrderTraversal.pm 
+                    Sort.pm 
+                    ToNestedArray.pm
+                    ToNestedHash.pm
+                    VariableDepthClone.pm
+                VisitorFactory.pm   
+    Makefile.PL
+    MANIFEST
+    README
+    t
+        10_Tree_Simple_VisitorFactory_test.t
+    	20_Tree_Simple_Visitor_PathToRoot_test.t
+    	30_Tree_Simple_Visitor_FindByPath_test.t
+        32_Tree_Simple_Visitor_FindByNodeValue_test.t
+        35_Tree_Simple_Visitor_FindByUID_test.t
+    	40_Tree_Simple_Visitor_GetAllDescendents_test.t
+    	50_Tree_Simple_Visitor_BreadthFirstTraversal_test.t
+    	60_Tree_Simple_Visitor_PostOrderTraversal_test.t
+        65_Tree_Simple_Visitor_PreOrederTraversal_test.t
+    	70_Tree_Simple_Visitor_LoadDirectoryTree_test.t
+        75_Tree_Simple_Visitor_CreateDirectoryTree_test.t
+        80_Tree_Simple_Visitor_Sort_test.t
+        90_Tree_Simple_Visitor_FromNestedHash_test.t
+        91_Tree_Simple_Visitor_FromNestedArray_test.t
+        92_Tree_Simple_Visitor_ToNestedHash_test.t 
+        93_Tree_Simple_Visitor_ToNestedArray_test.t  
+        95_Tree_Simple_Visitor_LoadClassHierarchy_test.t 
+        96_Tree_Simple_Visitor_VariableDepthClone_test.t       
+    	pod.t
+    	pod_coverage.t
+);
+my %normal = map { $_ => undef } @normal;
+
+my $node_filter = sub {
+    my ($item) = @_;
+    return 0 unless exists $normal{$item};
+    return 1;
+};
+
 # normal order
 {
     my $dir_tree = Tree::Simple->new(File::Spec->curdir(), Tree::Simple->ROOT);
@@ -27,65 +84,9 @@ can_ok("Tree::Simple::Visitor::LoadDirectoryTree", 'new');
     
     # just examine the files in the MANIFEST
     # not the ones created by the makefile
-    $visitor->setNodeFilter(sub {
-        my ($item) = @_;
-        return 0 if $item eq "Makefile";
-        return 0 if $item eq ".DS_Store";
-        return 0 if $item =~ /CVS|cover_db|blib|\.svn/;
-        return 1;
-    });
+    $visitor->setNodeFilter($node_filter);
     
     $dir_tree->accept($visitor);
-    
-    my @normal = qw(
-        Changes
-        lib
-            Tree
-                Simple
-                    Visitor
-                        BreadthFirstTraversal.pm
-                        CreateDirectoryTree.pm
-                        FindByPath.pm
-                        FindByUID.pm
-                        FindByNodeValue.pm
-                        FromNestedArray.pm                        
-                        FromNestedHash.pm                  
-                        GetAllDescendents.pm
-                        LoadClassHierarchy.pm
-                        LoadDirectoryTree.pm
-                        PathToRoot.pm
-                        PostOrderTraversal.pm 
-                        PreOrderTraversal.pm 
-                        Sort.pm 
-                        ToNestedArray.pm
-                        ToNestedHash.pm
-                        VariableDepthClone.pm
-                    VisitorFactory.pm   
-        Makefile.PL
-        MANIFEST
-        README
-        t
-            10_Tree_Simple_VisitorFactory_test.t
-        	20_Tree_Simple_Visitor_PathToRoot_test.t
-        	30_Tree_Simple_Visitor_FindByPath_test.t
-            32_Tree_Simple_Visitor_FindByNodeValue_test.t
-            35_Tree_Simple_Visitor_FindByUID_test.t
-        	40_Tree_Simple_Visitor_GetAllDescendents_test.t
-        	50_Tree_Simple_Visitor_BreadthFirstTraversal_test.t
-        	60_Tree_Simple_Visitor_PostOrderTraversal_test.t
-            65_Tree_Simple_Visitor_PreOrederTraversal_test.t
-        	70_Tree_Simple_Visitor_LoadDirectoryTree_test.t
-            75_Tree_Simple_Visitor_CreateDirectoryTree_test.t
-            80_Tree_Simple_Visitor_Sort_test.t
-            90_Tree_Simple_Visitor_FromNestedHash_test.t
-            91_Tree_Simple_Visitor_FromNestedArray_test.t
-            92_Tree_Simple_Visitor_ToNestedHash_test.t 
-            93_Tree_Simple_Visitor_ToNestedArray_test.t  
-            95_Tree_Simple_Visitor_LoadClassHierarchy_test.t 
-            96_Tree_Simple_Visitor_VariableDepthClone_test.t       
-        	pod.t
-        	pod_coverage.t
-    );
 
     my $visitor_check = Tree::Simple::Visitor::GetAllDescendents->new();
     isa_ok($visitor_check, 'Tree::Simple::Visitor::GetAllDescendents');
@@ -111,13 +112,7 @@ can_ok("Tree::Simple::Visitor::LoadDirectoryTree", 'new');
     
     # just examine the files in the MANIFEST
     # not the ones created by the makefile 
-    $visitor->setNodeFilter(sub {
-        my ($item) = @_;
-        return 0 if $item eq "Makefile";
-        return 0 if $item eq ".DS_Store";        
-        return 0 if $item =~ /CVS|cover_db|blib|\.svn/;
-        return 1;
-    });
+    $visitor->setNodeFilter($node_filter);
     
     can_ok($visitor, 'SORT_FILES_FIRST');
     $visitor->setSortStyle($visitor->SORT_FILES_FIRST);
@@ -181,7 +176,7 @@ can_ok("Tree::Simple::Visitor::LoadDirectoryTree", 'new');
         
     is_deeply(
             [ $visitor_check->getResults() ],
-            \@files_first,
+            \@files_first,            
             '... our tree is in the file first order'); 
 }
 
@@ -197,13 +192,7 @@ can_ok("Tree::Simple::Visitor::LoadDirectoryTree", 'new');
     
     # just examine the files in the MANIFEST
     # not the ones created by the makefile   
-    $visitor->setNodeFilter(sub {
-        my ($item) = @_;
-        return 0 if $item eq "Makefile";
-        return 0 if $item eq ".DS_Store";        
-        return 0 if $item =~ /CVS|cover_db|blib|\.svn/;
-        return 1;
-    });
+    $visitor->setNodeFilter($node_filter);
     
     can_ok($visitor, 'SORT_DIRS_FIRST');
     $visitor->setSortStyle($visitor->SORT_DIRS_FIRST);
