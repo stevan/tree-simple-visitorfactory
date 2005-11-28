@@ -1,5 +1,9 @@
 Revision history for Perl extension Tree-Simple-VisitorFactory.
 
+0.10 Fri Nov. 25, 2005
+    - removing OS X resource fork files which are causeing 
+      the pod test to fail
+
 0.09 Mon November 7, 2005
     - fixing an error in the Tree::Simple::Visitor::LoadDirectoryTree test
 
