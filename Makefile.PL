@@ -10,7 +10,7 @@ WriteMakefile
 	PREREQ_PM    =>
 	{
 		'File::Spec'      => 0.60,
-		'Scalar::Util'    => 1.10
+		'Scalar::Util'    => 1.10,
 		'strict'          => 0,
 		'Test::More'      => 0.47,
 		'Test::Exception' => 0.15,
