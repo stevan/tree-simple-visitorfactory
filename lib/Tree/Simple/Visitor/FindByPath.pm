@@ -4,7 +4,7 @@ package Tree::Simple::Visitor::FindByPath;
 use strict;
 use warnings;
 
-our $VERSION = '0.03';
+our $VERSION = '0.11';
 
 use Scalar::Util qw(blessed);
 

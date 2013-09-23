@@ -4,7 +4,7 @@ package Tree::Simple::Visitor::PreOrderTraversal;
 use strict;
 use warnings;
 
-our $VERSION = '0.01';
+our $VERSION = '0.11';
 
 use base qw(Tree::Simple::Visitor);
 

@@ -4,7 +4,7 @@ package Tree::Simple::Visitor::PostOrderTraversal;
 use strict;
 use warnings;
 
-our $VERSION = '0.02';
+our $VERSION = '0.11';
 
 use Scalar::Util qw(blessed);
 

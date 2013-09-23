@@ -4,7 +4,7 @@ package Tree::Simple::Visitor::LoadDirectoryTree;
 use strict;
 use warnings;
 
-our $VERSION = '0.02';
+our $VERSION = '0.11';
 
 use File::Spec;
 use Scalar::Util qw(blessed);
