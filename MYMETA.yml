@@ -1,0 +1,80 @@
+---
+abstract: 'A factory object for dispensing Visitor objects'
+author:
+  - 'Stevan Little <stevan@cpan.org>'
+build_requires:
+  Test::Exception: 0.15
+  Test::More: 0.47
+configure_requires:
+  Module::Build: 0.38
+dynamic_config: 0
+generated_by: 'Module::Build version 0.4005, CPAN::Meta::Converter version 2.131560'
+license: perl
+meta-spec:
+  url: http://module-build.sourceforge.net/META-spec-v1.4.html
+  version: 1.4
+name: Tree-Simple-VisitorFactory
+provides:
+  Tree::Simple::Visitor::BreadthFirstTraversal:
+    file: lib/Tree/Simple/Visitor/BreadthFirstTraversal.pm
+    version: 0.02
+  Tree::Simple::Visitor::CreateDirectoryTree:
+    file: lib/Tree/Simple/Visitor/CreateDirectoryTree.pm
+    version: 0.02
+  Tree::Simple::Visitor::FindByNodeValue:
+    file: lib/Tree/Simple/Visitor/FindByNodeValue.pm
+    version: 0.02
+  Tree::Simple::Visitor::FindByPath:
+    file: lib/Tree/Simple/Visitor/FindByPath.pm
+    version: 0.03
+  Tree::Simple::Visitor::FindByUID:
+    file: lib/Tree/Simple/Visitor/FindByUID.pm
+    version: 0.02
+  Tree::Simple::Visitor::FromNestedArray:
+    file: lib/Tree/Simple/Visitor/FromNestedArray.pm
+    version: 0.02
+  Tree::Simple::Visitor::FromNestedHash:
+    file: lib/Tree/Simple/Visitor/FromNestedHash.pm
+    version: 0.03
+  Tree::Simple::Visitor::GetAllDescendents:
+    file: lib/Tree/Simple/Visitor/GetAllDescendents.pm
+    version: 0.02
+  Tree::Simple::Visitor::LoadClassHierarchy:
+    file: lib/Tree/Simple/Visitor/LoadClassHierarchy.pm
+    version: 0.02
+  Tree::Simple::Visitor::LoadDirectoryTree:
+    file: lib/Tree/Simple/Visitor/LoadDirectoryTree.pm
+    version: 0.02
+  Tree::Simple::Visitor::PathToRoot:
+    file: lib/Tree/Simple/Visitor/PathToRoot.pm
+    version: 0.02
+  Tree::Simple::Visitor::PostOrderTraversal:
+    file: lib/Tree/Simple/Visitor/PostOrderTraversal.pm
+    version: 0.02
+  Tree::Simple::Visitor::PreOrderTraversal:
+    file: lib/Tree/Simple/Visitor/PreOrderTraversal.pm
+    version: 0.01
+  Tree::Simple::Visitor::Sort:
+    file: lib/Tree/Simple/Visitor/Sort.pm
+    version: 0.03
+  Tree::Simple::Visitor::ToNestedArray:
+    file: lib/Tree/Simple/Visitor/ToNestedArray.pm
+    version: 0.02
+  Tree::Simple::Visitor::ToNestedHash:
+    file: lib/Tree/Simple/Visitor/ToNestedHash.pm
+    version: 0.02
+  Tree::Simple::Visitor::VariableDepthClone:
+    file: lib/Tree/Simple/Visitor/VariableDepthClone.pm
+    version: 0.03
+  Tree::Simple::VisitorFactory:
+    file: lib/Tree/Simple/VisitorFactory.pm
+    version: 0.10
+requires:
+  File::Spec: 0.6
+  Scalar::Util: 1.1
+  Tree::Simple: 1.12
+  strict: 0
+  warnings: 0
+resources:
+  license: http://dev.perl.org/licenses/
+version: 0.10
