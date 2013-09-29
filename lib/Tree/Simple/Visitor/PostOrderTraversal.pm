@@ -38,16 +38,16 @@ sub visit {
             # recursion
             push @results => $traversal_function->($child, $traversal_function);
         }
-        # if we are root and we are not including the trunk then 
+        # if we are root and we are not including the trunk then
         # we can return our results now
         return @results if $current_tree->isRoot() && !$self->includeTrunk();
-        # however, if we dont meet those conditions, then we 
+        # however, if we dont meet those conditions, then we
         # need to process the current tree and add it to our
         # results
-        push @results => (($filter_function) ? 
-                                $filter_function->($current_tree) 
-                                : 
-                                $current_tree->getNodeValue()); 
+        push @results => (($filter_function) ?
+                                $filter_function->($current_tree)
+                                :
+                                $current_tree->getNodeValue());
         # and then return the results
         return @results;
     };
@@ -66,18 +66,18 @@ Tree::Simple::Visitor::PostOrderTraversal - A Visitor for post-order traversal a
 =head1 SYNOPSIS
 
   use Tree::Simple::Visitor::PostOrderTraversal;
-  
+
   # create an visitor
   my $visitor = Tree::Simple::Visitor::PostOrderTraversal->new();
-  
+
   # pass our visitor to the tree
   $tree->accept($visitor);
-  
+
   # print our results
   print join ", " => $visitor->getResults();
-  
-  # this will print this: 
-  #   1.1.1 1.1 1.2 1 2.1 2 3.1 3 
+
+  # this will print this:
+  #   1.1.1 1.1 1.2 1 2.1 2 3.1 3
   # assuming your tree is like this:
   #   1
   #     1.1
@@ -86,7 +86,7 @@ Tree::Simple::Visitor::PostOrderTraversal - A Visitor for post-order traversal a
   #   2
   #     2.1
   #   3
-  #     3.1  
+  #     3.1
 
 =head1 DESCRIPTION
 
@@ -102,7 +102,7 @@ There are no arguments to the constructor the object will be in its default stat
 
 =item B<includeTrunk ($boolean)>
 
-Based upon the value of C<$boolean>, this will tell the visitor to include the trunk of the tree in the traversal as well. 
+Based upon the value of C<$boolean>, this will tell the visitor to include the trunk of the tree in the traversal as well.
 
 =item B<setNodeFilter ($filter_function)>
 
@@ -120,7 +120,7 @@ This method returns the accumulated results of the application of the node filte
 
 =head1 BUGS
 
-None that I am aware of. Of course, if you find a bug, let me know, and I will be sure to fix it. 
+None that I am aware of. Of course, if you find a bug, let me know, and I will be sure to fix it.
 
 =head1 CODE COVERAGE
 
@@ -141,7 +141,7 @@ Copyright 2004, 2005 by Infinity Interactive, Inc.
 L<http://www.iinteractive.com>
 
 This library is free software; you can redistribute it and/or modify
-it under the same terms as Perl itself. 
+it under the same terms as Perl itself.
 
 =cut
 

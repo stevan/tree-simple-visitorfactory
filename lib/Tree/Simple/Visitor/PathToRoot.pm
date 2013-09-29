@@ -25,11 +25,11 @@ sub visit {
 		|| die "Insufficient Arguments : You must supply a valid Tree::Simple object";
     # create an array for our path
     my @path;
-    # we need to climb up the tree and 
+    # we need to climb up the tree and
     # collect the nodes
     my $filter_function = $self->getNodeFilter();
     my $current_tree = $tree;
-    until ($current_tree->isRoot()) {  
+    until ($current_tree->isRoot()) {
         unshift @path => ($filter_function ?
                                         $filter_function->($current_tree)
                                         :
@@ -42,7 +42,7 @@ sub visit {
                                         :
                                         $current_tree->getNodeValue()) if $self->includeTrunk();
     # now store our path in results
-    $self->setResults(@path);                                    
+    $self->setResults(@path);
 }
 
 sub getPath {
@@ -67,35 +67,35 @@ Tree::Simple::Visitor::PathToRoot - A Visitor for finding the path back a Tree::
 =head1 SYNOPSIS
 
   use Tree::Simple::Visitor::PathToRoot;
-  
+
   # create an instance of our visitor
   my $visitor = Tree::Simple::Visitor::PathToRoot->new();
-  
+
   # pass the visitor to a Tree::Simple object
   $tree->accept($visitor);
-  
-  # now get the accumulated path as a string 
+
+  # now get the accumulated path as a string
   # with the '/' character as the delimiter
   print $visitor->getPathAsString("/");
-  
+
   # include the tree's trunk in your
-  # output as well 
+  # output as well
   $visitor->includeTrunk();
-  
-  # for more complex node objects, you can specify 
+
+  # for more complex node objects, you can specify
   # a node filter which will be used to extract the
   # information desired from each node
-  $visitor->setNodeFilter(sub { 
+  $visitor->setNodeFilter(sub {
                 my ($t) = @_;
                 return $t->getNodeValue()->description();
                 });
-  
+
   # you can also get the path back as an array
-  my @path = $visitor->getPath();  
+  my @path = $visitor->getPath();
 
 =head1 DESCRIPTION
 
-Given a Tree::Simple object, this Visitor will find the path back to the tree's root node. 
+Given a Tree::Simple object, this Visitor will find the path back to the tree's root node.
 
 =head1 METHODS
 
@@ -107,7 +107,7 @@ There are no arguments to the constructor the object will be in its default stat
 
 =item B<includeTrunk ($boolean)>
 
-Based upon the value of C<$boolean>, this will tell the visitor to collect the trunk of the tree as well. 
+Based upon the value of C<$boolean>, this will tell the visitor to collect the trunk of the tree as well.
 
 =item B<setNodeFilter ($filter_function)>
 
@@ -129,7 +129,7 @@ This will return the collected path as a string with the path elements joined by
 
 =head1 BUGS
 
-None that I am aware of. Of course, if you find a bug, let me know, and I will be sure to fix it. 
+None that I am aware of. Of course, if you find a bug, let me know, and I will be sure to fix it.
 
 =head1 CODE COVERAGE
 
@@ -150,7 +150,7 @@ Copyright 2004, 2005 by Infinity Interactive, Inc.
 L<http://www.iinteractive.com>
 
 This library is free software; you can redistribute it and/or modify
-it under the same terms as Perl itself. 
+it under the same terms as Perl itself.
 
 =cut
 

@@ -39,43 +39,43 @@ sub visit {
 
     # reset our success flag
     $self->{success} = 0;
-        
+
     # get our filter function
 	my $func;
     if ($self->{_filter_function}) {
-        $func = sub { 
+        $func = sub {
             my ($tree, $test) = @_;
             return (($self->{_filter_function}->($tree) . "") eq $test);
-            };    
+            };
     }
     else {
-        $func = sub { 
+        $func = sub {
             my ($tree, $test) = @_;
             return (($tree->getNodeValue() . "") eq $test);
-            };  
+            };
     }
 
     # get ready with our results
     my @results;
-    
+
     # get our path
-    my @path = @{$self->{search_path}};    
+    my @path = @{$self->{search_path}};
 
     # get our variables ready
     my $current_path;
     my $current_tree = $tree;
-    
-    # check to see if we have been 
+
+    # check to see if we have been
     # asked to include the trunk
     if ($self->includeTrunk()) {
         # if we dont match the root of the path
         # then we have failed already and so return
-        $self->setResults(()) && return 
+        $self->setResults(()) && return
             unless $func->($current_tree, $path[0]);
         # if we do match, then remove it off the path
         shift @path;
     }
-    
+
     TOP: {
         # if we have no more @path we have found it
         unless (@path) {
@@ -94,35 +94,35 @@ sub visit {
         foreach my $child ($current_tree->getAllChildren()) {
             if ($func->($child, $current_path)) {
                 # if we find a match, then
-                # we store the current tree 
-                # in our results, and 
+                # we store the current tree
+                # in our results, and
                 push @results => $current_tree;
                 # we change our current tree
                 $current_tree = $child;
-                # and go back to the TOP                
+                # and go back to the TOP
                 goto TOP;
             }
         }
-   
-        # if we do not find a match, then we can fall off 
+
+        # if we do not find a match, then we can fall off
         # this block and the whole subroutine for that matter
         # since we know the match has failed.
-        push @results => $current_tree 
+        push @results => $current_tree
             if (@path || $self->{success} == 0) && $current_tree != $tree;
     }
-    # we do however, store the 
+    # we do however, store the
     # results as far as we got,
-    # so that the user can maybe 
+    # so that the user can maybe
     # do something else to recover
     $self->setResults(@results);
 }
 
 sub getResult {
     my ($self) = @_;
-    # if we did not succeed, then 
+    # if we did not succeed, then
     # we return undef, ...
     return undef unless $self->{success};
-    # otherwise we return the 
+    # otherwise we return the
     # last in the results
     return $self->getResults()->[-1];
 }
@@ -138,28 +138,28 @@ Tree::Simple::Visitor::FindByPath - A Visitor for finding an element in a Tree::
 =head1 SYNOPSIS
 
   use Tree::Simple::Visitor::FindByPath;
-  
+
   # create a visitor object
   my $visitor = Tree::Simple::Visitor::FindByPath->new();
-  
-  # set the search path for our tree  
+
+  # set the search path for our tree
   $visitor->setSearchPath(qw(1 1.2 1.2.2));
-  
+
   # pass the visitor to a tree
   $tree->accept($visitor);
-  
-  # fetch the result, which will 
-  # be the Tree::Simple object that 
+
+  # fetch the result, which will
+  # be the Tree::Simple object that
   # we have found, or undefined
   my $result = $visitor->getResult() || die "No Tree found";
-  
-  # our result's node value should match 
+
+  # our result's node value should match
   # the last element in our path
   print $result->getNodeValue(); # this should print 1.2.2
 
 =head1 DESCRIPTION
 
-Given a path and Tree::Simple hierarchy, this Visitor will attempt to find the node specified by the path. 
+Given a path and Tree::Simple hierarchy, this Visitor will attempt to find the node specified by the path.
 
 =head1 METHODS
 
@@ -171,7 +171,7 @@ There are no arguments to the constructor the object will be in its default stat
 
 =item B<includeTrunk ($boolean)>
 
-Based upon the value of C<$boolean>, this will tell the visitor to include the trunk of the tree in the search as well. 
+Based upon the value of C<$boolean>, this will tell the visitor to include the trunk of the tree in the search as well.
 
 =item B<setSearchPath (@path)>
 
@@ -197,7 +197,7 @@ This method will return the tree's that make up the path specified in C<setSearc
 
 =head1 BUGS
 
-None that I am aware of. Of course, if you find a bug, let me know, and I will be sure to fix it. 
+None that I am aware of. Of course, if you find a bug, let me know, and I will be sure to fix it.
 
 =head1 CODE COVERAGE
 
@@ -218,7 +218,7 @@ Copyright 2004, 2005 by Infinity Interactive, Inc.
 L<http://www.iinteractive.com>
 
 This library is free software; you can redistribute it and/or modify
-it under the same terms as Perl itself. 
+it under the same terms as Perl itself.
 
 =cut
 

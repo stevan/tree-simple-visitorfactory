@@ -22,14 +22,14 @@ sub new {
 sub _init {
     my ($self) = @_;
     $self->{clone_depth} = undef;
-    $self->SUPER::_init();    
+    $self->SUPER::_init();
 }
 
 sub setCloneDepth {
     my ($self, $clone_depth) = @_;
-    (defined($clone_depth)) 
-    	|| die "Insufficient Arguments : you must supply a clone depth";    
-    $self->{clone_depth} = $clone_depth;    
+    (defined($clone_depth))
+    	|| die "Insufficient Arguments : you must supply a clone depth";
+    $self->{clone_depth} = $clone_depth;
 }
 
 sub getClone {
@@ -40,14 +40,14 @@ sub getClone {
 sub visit {
     my ($self, $tree) = @_;
     (blessed($tree) && $tree->isa("Tree::Simple"))
-    	|| die "Insufficient Arguments : You must supply a valid Tree::Simple object"; 
-    	
+    	|| die "Insufficient Arguments : You must supply a valid Tree::Simple object";
+
     my $filter = $self->getNodeFilter();
-    
-    # get a new instance of the root tree type    
+
+    # get a new instance of the root tree type
     my $new_root = blessed($tree)->new($tree->ROOT);
     my $new_tree = $new_root;
-    
+
     if ($self->includeTrunk()) {
         my $cloned_trunk = blessed($tree)->new();
         $cloned_trunk->setNodeValue(
@@ -57,10 +57,10 @@ sub visit {
         $new_tree->addChild($cloned_trunk);
         $new_tree = $cloned_trunk;
     }
-    
+
     $self->_cloneTree($tree, $new_tree, $self->{clone_depth}, $filter);
-    
-    $self->setResults($new_root);    	    
+
+    $self->setResults($new_root);
 }
 
 sub _cloneTree {
@@ -71,7 +71,7 @@ sub _cloneTree {
         $cloned_child->setNodeValue(
             Tree::Simple::_cloneNode($child->getNodeValue())
         );
-        $filter->($child, $cloned_child) if defined $filter;        
+        $filter->($child, $cloned_child) if defined $filter;
         $clone->addChild($cloned_child);
         $self->_cloneTree($child, $cloned_child, $depth - 1, $filter) unless $child->isLeaf();
     }
@@ -91,17 +91,17 @@ Tree::Simple::Visitor::VariableDepthClone - A Visitor for cloning parts of Tree:
 
   # create an visitor
   my $visitor = Tree::Simple::Visitor::VariableDepthClone->new();
-  
+
   $visitor->setCloneDepth(3);
 
   # pass our visitor to the tree
   $tree->accept($visitor);
-  
+
   my $partial_tree = $visitor->getClone();
 
 =head1 DESCRIPTION
 
-This visitor will clone 
+This visitor will clone
 
 =head1 METHODS
 
@@ -119,7 +119,7 @@ Based upon the value of C<$boolean>, this will tell the visitor to include the t
 
 =item B<setNodeFilter ($filter_function)>
 
-This method accepts a CODE reference as its C<$filter_function> argument and throws an exception if it is not a code reference. This code reference is used to filter the tree nodes as they are cloned. 
+This method accepts a CODE reference as its C<$filter_function> argument and throws an exception if it is not a code reference. This code reference is used to filter the tree nodes as they are cloned.
 
 =item B<visit ($tree)>
 
@@ -133,7 +133,7 @@ This method returns the cloned partial tree.
 
 =head1 BUGS
 
-None that I am aware of. Of course, if you find a bug, let me know, and I will be sure to fix it. 
+None that I am aware of. Of course, if you find a bug, let me know, and I will be sure to fix it.
 
 =head1 CODE COVERAGE
 
@@ -154,7 +154,7 @@ Copyright 2005 by Infinity Interactive, Inc.
 L<http://www.iinteractive.com>
 
 This library is free software; you can redistribute it and/or modify
-it under the same terms as Perl itself. 
+it under the same terms as Perl itself.
 
 =cut
 

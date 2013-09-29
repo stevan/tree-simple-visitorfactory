@@ -22,7 +22,7 @@ sub new {
 sub visit {
 	my ($self, $tree) = @_;
 	(blessed($tree) && $tree->isa("Tree::Simple"))
-		|| die "Insufficient Arguments : You must supply a valid Tree::Simple object";                                    
+		|| die "Insufficient Arguments : You must supply a valid Tree::Simple object";
     # grab our filter (if we have one)
     my $filter = $self->getNodeFilter();
     my %results;
@@ -30,9 +30,9 @@ sub visit {
     $self->_buildHash($tree, \%results, $filter);
     # add the trunk if we need to
     %results = (
-            ((defined($filter)) ? 
-                    $filter->($tree) 
-                    : 
+            ((defined($filter)) ?
+                    $filter->($tree)
+                    :
                     $tree->getNodeValue()) => { %results }
         ) if $self->includeTrunk();
     # set results
@@ -45,7 +45,7 @@ sub _buildHash {
         my $node_value = {};
         my $node_key = (defined($filter) ? $filter->($child) : $child->getNodeValue());
         $self->_buildHash($child, $node_value, $filter) unless $child->isLeaf();
-        $accumulator->{$node_key} = $node_value;            
+        $accumulator->{$node_key} = $node_value;
     }
     return $accumulator;
 }
@@ -70,19 +70,19 @@ Tree::Simple::Visitor::ToNestedHash - A Visitor for creating nested hash trees f
                 ->addChildren(
                     Tree::Simple->new("Child1")
                         ->addChildren(
-                            Tree::Simple->new("GrandChild1"),                
+                            Tree::Simple->new("GrandChild1"),
                             Tree::Simple->new("GrandChild2")
                         ),
                     Tree::Simple->new("Child2"),
-                );  
+                );
 
   $tree->accept($visitor);
 
   my $array_tree = $visitor->getResults();
-  
+
   # this then creates the equivalent nested array tree:
   # {
-  # Root => {  
+  # Root => {
   #         Child1 => {
   #                 GrandChild1 => {},
   #                 GrandChild2 => {}
@@ -91,9 +91,9 @@ Tree::Simple::Visitor::ToNestedHash - A Visitor for creating nested hash trees f
   #         }
   # }
 
-=head1 DESCRIPTION 
+=head1 DESCRIPTION
 
-Given a tree constructed from a Tree::Simple heirarchy, this Visitor will create the equivalent tree of nested hashes. 
+Given a tree constructed from a Tree::Simple heirarchy, this Visitor will create the equivalent tree of nested hashes.
 
 =head1 METHODS
 
@@ -123,7 +123,7 @@ This method will return the hash tree constructed.
 
 =head1 BUGS
 
-None that I am aware of. Of course, if you find a bug, let me know, and I will be sure to fix it. 
+None that I am aware of. Of course, if you find a bug, let me know, and I will be sure to fix it.
 
 =head1 CODE COVERAGE
 
@@ -144,6 +144,6 @@ Copyright 2004, 2005 by Infinity Interactive, Inc.
 L<http://www.iinteractive.com>
 
 This library is free software; you can redistribute it and/or modify
-it under the same terms as Perl itself. 
+it under the same terms as Perl itself.
 
 =cut

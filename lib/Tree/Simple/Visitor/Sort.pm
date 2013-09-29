@@ -33,7 +33,7 @@ sub REVERSE_ALPHABETICAL { sub ($$) { lc($_[1]->getNodeValue()) cmp lc($_[0]->ge
 
 sub setSortFunction {
     my ($self, $sort_function) = @_;
-    (defined($sort_function) && ref($sort_function) eq "CODE") 
+    (defined($sort_function) && ref($sort_function) eq "CODE")
         || die "Insufficient Arguments : You must supply a CODE reference for the sort function";
     $self->{sort_function} = $sort_function;
 }
@@ -42,10 +42,10 @@ sub visit {
     my ($self, $tree) = @_;
 	(blessed($tree) && $tree->isa("Tree::Simple"))
         || die "Insufficient Arguments : You must supply a valid Tree::Simple object";
-        
+
     # No childs, nothing to sort
     return if $tree->isLeaf();
-    
+
     my $sort_function;
     if ($self->{sort_function}) {
         $sort_function = $self->{sort_function};
@@ -57,20 +57,20 @@ sub visit {
             $sort_function = sub { $filter_func->($a) cmp $filter_func->($b) };
         }
         else {
-            $sort_function = sub { $a->getNodeValue() cmp $b->getNodeValue() };    
+            $sort_function = sub { $a->getNodeValue() cmp $b->getNodeValue() };
         }
-    }  
-    
+    }
+
     # otherwise sort them
     $self->_sortTree($sort_function, $tree);
 }
 
 sub _sortTree {
     my ($self, $sort_function, $tree) = @_;
-    
-    # sort children, using the sort filter 
+
+    # sort children, using the sort filter
     my @childs = sort { $sort_function->($a, $b) } $tree->getAllChildren();
-    
+
     # Create the new sequence
     foreach my $child (@childs) {
         # get the removed child
@@ -78,7 +78,7 @@ sub _sortTree {
         # and be sure that is the one
         # we re-insert
         $tree->addChild($child);
-        # only sort the child if 
+        # only sort the child if
         # it is not a leaf
         $self->_sortTree($sort_function, $child) unless $child->isLeaf();
     }
@@ -95,35 +95,35 @@ Tree::Simple::Visitor::Sort - A Visitor for sorting a Tree::Simple object heirar
 =head1 SYNOPSIS
 
   use Tree::Simple::Visitor::Sort;
-  
+
   # create a visitor object
   my $visitor = Tree::Simple::Visitor::Sort->new();
-  
+
   $tree->accept($visitor);
   # the tree is now sorted ascii-betically
 
-  # set the sort function to 
+  # set the sort function to
   # use a numeric comparison
   $visitor->setSortFunction($visitor->NUMERIC);
-  
+
   $tree->accept($visitor);
-  # the tree is now sorted numerically  
-  
+  # the tree is now sorted numerically
+
   # set a custom sort function
   $visitor->setSortFunction(sub {
         my ($left, $right) = @_;
         lc($left->getNodeValue()->{name}) cmp lc($right->getNodeValue()->{name});
   });
-  
+
   $tree->accept($visitor);
-  # the tree's node are now sorted appropriately   
+  # the tree's node are now sorted appropriately
 
 =head1 DESCRIPTION
 
-This implements a recursive multi-level sort of a Tree::Simple heirarchy. I think this deserves some more explaination, and the best way to do that is visually. 
+This implements a recursive multi-level sort of a Tree::Simple heirarchy. I think this deserves some more explaination, and the best way to do that is visually.
 
 Given the tree:
-	
+
     1
         1.3
         1.2
@@ -154,12 +154,12 @@ A normal sort would produce the following tree:
         3.2
         3.3
     4
-        4.1  
-        
+        4.1
+
 A sort using the built-in REVERSE sort function would produce the following tree:
 
     4
-        4.1         
+        4.1
     3
         3.3
         3.2
@@ -173,7 +173,7 @@ A sort using the built-in REVERSE sort function would produce the following tree
             1.2.1
         1.1
 
-As you can see, no node is moved up or down from it's current depth, but sorted with it's siblings. Flexible customized sorting is possible within this framework, however, this cannot be used for tree-balancing or anything as complex as that. 
+As you can see, no node is moved up or down from it's current depth, but sorted with it's siblings. Flexible customized sorting is possible within this framework, however, this cannot be used for tree-balancing or anything as complex as that.
 
 =head1 METHODS
 
@@ -185,7 +185,7 @@ There are no arguments to the constructor the object will be in its default stat
 
 =item B<includeTrunk ($boolean)>
 
-Based upon the value of C<$boolean>, this will tell the visitor to include the trunk of the tree in the sort as well. 
+Based upon the value of C<$boolean>, this will tell the visitor to include the trunk of the tree in the sort as well.
 
 =item B<setNodeFilter ($filter_function)>
 
@@ -201,7 +201,7 @@ Several pre-built sort functions are provided. All of these functions assume tha
 
 =item REVERSE
 
-This is the reverse of the normal sort using C<cmp>. 
+This is the reverse of the normal sort using C<cmp>.
 
 =item NUMERIC
 
@@ -215,7 +215,7 @@ The reverse of the above.
 
 This lowercases the node value before using C<cmp> to sort. This results in a true alphabetical sorting.
 
-=item REVERSE_ALPHABETICAL 
+=item REVERSE_ALPHABETICAL
 
 The reverse of the above.
 
@@ -233,7 +233,7 @@ It should be noted that this is a I<destructive> action, since the sort happens 
 
 =head1 BUGS
 
-None that I am aware of. Of course, if you find a bug, let me know, and I will be sure to fix it. 
+None that I am aware of. Of course, if you find a bug, let me know, and I will be sure to fix it.
 
 =head1 CODE COVERAGE
 
@@ -264,7 +264,7 @@ Copyright 2004, 2005 by Vitor Mori & Infinity Interactive, Inc.
 L<http://www.iinteractive.com>
 
 This library is free software; you can redistribute it and/or modify
-it under the same terms as Perl itself. 
+it under the same terms as Perl itself.
 
 =cut
 

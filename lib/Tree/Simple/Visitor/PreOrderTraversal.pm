@@ -28,18 +28,18 @@ Tree::Simple::Visitor::PreOrderTraversal - A Visitor for pre-order traversal a T
 =head1 SYNOPSIS
 
   use Tree::Simple::Visitor::PreOrderTraversal;
-  
+
   # create an visitor
   my $visitor = Tree::Simple::Visitor::PreOrderTraversal->new();
-  
+
   # pass our visitor to the tree
   $tree->accept($visitor);
-  
+
   # print our results
   print join ", " => $visitor->getResults();
-  
-  # this will print this: 
-  #   1 1.1 1.1.1 1.2 2 2.1 3 3.1 
+
+  # this will print this:
+  #   1 1.1 1.1.1 1.2 2 2.1 3 3.1
   # assuming your tree is like this:
   #   1
   #     1.1
@@ -48,11 +48,11 @@ Tree::Simple::Visitor::PreOrderTraversal - A Visitor for pre-order traversal a T
   #   2
   #     2.1
   #   3
-  #     3.1  
+  #     3.1
 
 =head1 DESCRIPTION
 
-Pre-order traversal is a depth-first traversal method in which the sub-tree's are processed I<after> the parent. It is essentially a wrapper around the base Tree::Simple::Visitor class, and is a seperate module here for completeness. (If you have a post-order, you should have a pre-order too). 
+Pre-order traversal is a depth-first traversal method in which the sub-tree's are processed I<after> the parent. It is essentially a wrapper around the base Tree::Simple::Visitor class, and is a seperate module here for completeness. (If you have a post-order, you should have a pre-order too).
 
 =head1 METHODS
 
@@ -64,7 +64,7 @@ There are no arguments to the constructor the object will be in its default stat
 
 =item B<includeTrunk ($boolean)>
 
-Based upon the value of C<$boolean>, this will tell the visitor to include the trunk of the tree in the traversal as well. 
+Based upon the value of C<$boolean>, this will tell the visitor to include the trunk of the tree in the traversal as well.
 
 =item B<setNodeFilter ($filter_function)>
 
@@ -82,7 +82,7 @@ This method returns the accumulated results of the application of the node filte
 
 =head1 BUGS
 
-None that I am aware of. Of course, if you find a bug, let me know, and I will be sure to fix it. 
+None that I am aware of. Of course, if you find a bug, let me know, and I will be sure to fix it.
 
 =head1 CODE COVERAGE
 
@@ -103,7 +103,7 @@ Copyright 2004, 2005 by Infinity Interactive, Inc.
 L<http://www.iinteractive.com>
 
 This library is free software; you can redistribute it and/or modify
-it under the same terms as Perl itself. 
+it under the same terms as Perl itself.
 
 =cut
 

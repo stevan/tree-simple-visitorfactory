@@ -23,25 +23,25 @@ sub _init {
     my ($self) = @_;
     $self->{class_to_load} = undef;
     $self->{include_methods} = 0;
-    $self->SUPER::_init();    
+    $self->SUPER::_init();
 }
 
 sub setClass {
     my ($self, $class_to_load) = @_;
     (defined($class_to_load)) || die "Insufficient Arguments : Must provide a class to load";
-    $self->{class_to_load} = $class_to_load; 
+    $self->{class_to_load} = $class_to_load;
 }
 
 sub includeMethods {
     my ($self, $boolean) = @_;
     $self->{include_methods} = ($boolean ? 1 : 0) if defined $boolean;
-    return $self->{include_methods};    
+    return $self->{include_methods};
 }
 
 sub visit {
 	my ($self, $tree) = @_;
 	(blessed($tree) && $tree->isa("Tree::Simple"))
-		|| die "Insufficient Arguments : You must supply a valid Tree::Simple object"; 
+		|| die "Insufficient Arguments : You must supply a valid Tree::Simple object";
     # it must be a leaf
     ($tree->isLeaf()) || die "Illegal Operation : The tree must be a leaf node to load a class hierarchy";
     (defined $self->{class_to_load}) || die "Insufficient Arguments : Must provide a class to load";
@@ -49,7 +49,7 @@ sub visit {
     my $filter = $self->getNodeFilter();
     # get the class to load
     my $class_to_load = ref($self->{class_to_load}) || $self->{class_to_load};
-    
+
     # deal with the include trunk functionality
     if ($self->includeTrunk()) {
         $tree->setNodeValue(defined $filter ? $filter->($class_to_load) : $class_to_load);
@@ -59,10 +59,10 @@ sub visit {
         $tree->addChild($new_tree);
         if ($self->includeMethods()) {
             $self->_loadMethods($new_tree, $class_to_load, $filter);
-        }        
+        }
         $tree = $new_tree;
     }
-    
+
     # and load it recursively
     $self->_loadClass($tree, $class_to_load, $filter);
 }
@@ -89,7 +89,7 @@ sub _loadMethods {
     my @methods;
     {
         no strict 'refs';
-        @methods = sort grep { defined &{"${class}::$_"} } keys %{"${class}::"};    
+        @methods = sort grep { defined &{"${class}::$_"} } keys %{"${class}::"};
     }
     foreach my $method (@methods) {
         $tree->addChild(Tree::Simple->new(defined $filter ? $filter->($method) : $method));
@@ -107,19 +107,19 @@ Tree::Simple::Visitor::LoadClassHierarchy - A Visitor for loading class hierarch
 =head1 SYNOPSIS
 
   use Tree::Simple::Visitor::LoadClassHierarchy;
-  
+
   # create an visitor
   my $visitor = Tree::Simple::Visitor::LoadClassHierarchy->new();
-  
+
   # set class as an instance, or
   $visitor->setClass($class);
-  
+
   # as a package name
   $visitor->setClass("My::Class");
-  
+
   # pass our visitor to the tree
   $tree->accept($visitor);
-  
+
   # the $tree now mirrors the inheritance hierarchy of the $class
 
 =head1 DESCRIPTION
@@ -176,7 +176,7 @@ This would traverse the full symbol tables and produce a detailed tree of everyt
 
 =head1 BUGS
 
-None that I am aware of. Of course, if you find a bug, let me know, and I will be sure to fix it. 
+None that I am aware of. Of course, if you find a bug, let me know, and I will be sure to fix it.
 
 =head1 CODE COVERAGE
 
@@ -197,7 +197,7 @@ Copyright 2004, 2005 by Infinity Interactive, Inc.
 L<http://www.iinteractive.com>
 
 This library is free software; you can redistribute it and/or modify
-it under the same terms as Perl itself. 
+it under the same terms as Perl itself.
 
 =cut
 

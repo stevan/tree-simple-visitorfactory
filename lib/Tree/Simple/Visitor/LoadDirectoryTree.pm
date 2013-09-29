@@ -23,15 +23,15 @@ sub new {
 sub _init {
     my ($self) = @_;
     $self->{sort_function} = undef;
-    $self->SUPER::_init();    
+    $self->SUPER::_init();
 }
 
 # pre-built sort functions
 sub SORT_FILES_FIRST {
-    return sub ($$$) { 
+    return sub ($$$) {
         my ($path, $left, $right) = @_;
         $left  = File::Spec->catdir($path, $left);
-        $right = File::Spec->catdir($path, $right);    
+        $right = File::Spec->catdir($path, $right);
         return ((-d $left && -f $right) ? 1 :       # file beats directory
                 (-d $right && -f $left) ? -1 :    # file beats directory
                     (lc($left) cmp lc($right)))     # otherwise just sort 'em
@@ -39,10 +39,10 @@ sub SORT_FILES_FIRST {
 }
 
 sub SORT_DIRS_FIRST {
-    return sub ($$$) {  
+    return sub ($$$) {
         my ($path, $left, $right) = @_;
         $left  = File::Spec->catdir($path, $left);
-        $right = File::Spec->catdir($path, $right);   
+        $right = File::Spec->catdir($path, $right);
         return ((-d $left && -f $right) ? -1 :      # directory beats file
                 (-d $right && -f $left) ? 1 :     # directory beats file
                     (lc($left) cmp lc($right)))     # otherwise just sort 'em
@@ -51,41 +51,41 @@ sub SORT_DIRS_FIRST {
 
 sub setSortStyle {
     my ($self, $sort_function) = @_;
-	(defined($sort_function) && ref($sort_function) eq "CODE") 
-		|| die "Insufficient Arguments : sort function argument must be a subroutine reference";    
+	(defined($sort_function) && ref($sort_function) eq "CODE")
+		|| die "Insufficient Arguments : sort function argument must be a subroutine reference";
     $self->{sort_function} = $sort_function;
 }
 
 sub visit {
 	my ($self, $tree) = @_;
 	(blessed($tree) && $tree->isa("Tree::Simple"))
-		|| die "Insufficient Arguments : You must supply a valid Tree::Simple object"; 
+		|| die "Insufficient Arguments : You must supply a valid Tree::Simple object";
     # it must be a leaf
     ($tree->isLeaf()) || die "Illegal Operation : The tree must be a leaf node to load a directory";
     # check that our directory is valid
     my $root_dir = $tree->getNodeValue();
-    (-e $root_dir && -d $root_dir) 
-        || die "Incorrect Type : The tree's node value must be a valid directory";  
+    (-e $root_dir && -d $root_dir)
+        || die "Incorrect Type : The tree's node value must be a valid directory";
     # and load it recursively
     $self->_recursiveLoad($tree, $root_dir);
 }
 
 sub _recursiveLoad {
-	my ($self, $t, $path) = @_; 
+	my ($self, $t, $path) = @_;
     # get a node filter if we have one
     my $filter = $self->getNodeFilter();
-    
+
     # get the contents of the directory
     opendir(DIR, $path) || die "IO Error : Could not open directory : $!";
     # avoid the . and .. symbolic links
-    my @dir_contents = grep { 
+    my @dir_contents = grep {
                         $_ ne File::Spec->curdir() && $_ ne File::Spec->updir()
                         } readdir(DIR);
     close(DIR);
-    
+
     # sort them if we need to with full paths
-    @dir_contents = sort { 
-                        $self->{sort_function}->($path, $a, $b) 
+    @dir_contents = sort {
+                        $self->{sort_function}->($path, $a, $b)
                     } @dir_contents if $self->{sort_function};
 
     # now traverse ...
@@ -97,7 +97,7 @@ sub _recursiveLoad {
         my $full_path = File::Spec->catdir($path, $item);
 		if (-d $full_path) {
             my $new_tree = $t->new($item);
-            $t->addChild($new_tree);       
+            $t->addChild($new_tree);
             $self->_recursiveLoad($new_tree, $full_path);
 		}
 		elsif (-f $full_path) {
@@ -117,29 +117,29 @@ Tree::Simple::Visitor::LoadDirectoryTree - A Visitor for loading the contents of
 =head1 SYNOPSIS
 
   use Tree::Simple::Visitor::LoadDirectoryTree;
-  
+
   # create a Tree::Simple object whose
   # node is path to a directory
   my $tree = Tree::Simple->new("./");
 
   # create an instance of our visitor
   my $visitor = Tree::Simple::Visitor::LoadDirectoryTree->new();
-  
+
   # set the directory sorting style
   $visitor->setSortStyle($visitor->SORT_FILES_FIRST);
-  
-  # create node filter to filter 
+
+  # create node filter to filter
   # out certain files and directories
   $visitor->setNodeFilter(sub {
       my ($item) = @_;
       return 0 if $item =~ /CVS/;
       return 1;
-  });  
-  
+  });
+
   # pass the visitor to a Tree::Simple object
   $tree->accept($visitor);
-  
-  # the tree now mirrors the structure of the directory 
+
+  # the tree now mirrors the structure of the directory
 
 =head1 DESCRIPTION
 
@@ -159,9 +159,9 @@ This method accepts a CODE reference as its C<$filter_function> argument and thr
 
 =item B<setSortStyle ($sort_function)>
 
-This method accepts a CODE reference as its C<$sort_function> argument and throws an exception if it is not a code reference. This function is used to sort the individual levels of the directory tree right before it is added to the tree being built. The function is passed the the current path, followed by the two items being sorted. The reason for passing the path in is so that sorting operations can be performed on the entire path if desired. 
+This method accepts a CODE reference as its C<$sort_function> argument and throws an exception if it is not a code reference. This function is used to sort the individual levels of the directory tree right before it is added to the tree being built. The function is passed the the current path, followed by the two items being sorted. The reason for passing the path in is so that sorting operations can be performed on the entire path if desired.
 
-Two pre-built functions are supplied and described below. 
+Two pre-built functions are supplied and described below.
 
 =over 4
 
@@ -203,7 +203,7 @@ The C<$tree> argument which is passed to C<visit> must be a leaf node. This is b
 
 =head1 BUGS
 
-None that I am aware of. Of course, if you find a bug, let me know, and I will be sure to fix it. 
+None that I am aware of. Of course, if you find a bug, let me know, and I will be sure to fix it.
 
 =head1 CODE COVERAGE
 
@@ -224,7 +224,7 @@ Copyright 2004, 2005 by Infinity Interactive, Inc.
 L<http://www.iinteractive.com>
 
 This library is free software; you can redistribute it and/or modify
-it under the same terms as Perl itself. 
+it under the same terms as Perl itself.
 
 =cut
 

@@ -22,7 +22,7 @@ sub new {
 sub _init {
     my ($self) = @_;
     $self->{traversal_method} = undef;
-    $self->SUPER::_init();    
+    $self->SUPER::_init();
 }
 
 sub setTraversalMethod {
@@ -36,7 +36,7 @@ sub visit {
 	my ($self, $tree) = @_;
 	(blessed($tree) && $tree->isa("Tree::Simple"))
 		|| die "Insufficient Arguments : You must supply a valid Tree::Simple object";
-	# create an closure for the 
+	# create an closure for the
     # collection function
     my @descendents;
     my $filter_function = $self->getNodeFilter();
@@ -48,8 +48,8 @@ sub visit {
                                 :
                                 $t->getNodeValue());
     };
-    # and collect our descendents with the 
-    # traversal method specified   
+    # and collect our descendents with the
+    # traversal method specified
     unless (defined($self->{traversal_method})) {
         $tree->traverse($collection_function);
     }
@@ -63,7 +63,7 @@ sub visit {
 
 sub getAllDescendents {
     my ($self) = @_;
-    return $self->getResults(); 
+    return $self->getResults();
 }
 
 1;
@@ -80,18 +80,18 @@ Tree::Simple::Visitor::GetAllDescendents - A Visitor for fetching all the descen
 
   # create an instance of our visitor
   my $visitor = Tree::Simple::Visitor::GetAllDescendents->new();
-  
+
   # pass the visitor to a Tree::Simple object
   $tree->accept($visitor);
 
-  # you can also get the descendents 
+  # you can also get the descendents
   # back as an array of node values
-  my @descendents = $visitor->getDescendents(); 
-  
-  # for more complex node objects, you can specify 
+  my @descendents = $visitor->getDescendents();
+
+  # for more complex node objects, you can specify
   # a node filter which will be used to extract the
   # information desired from each node
-  $visitor->setNodeFilter(sub { 
+  $visitor->setNodeFilter(sub {
                 my ($t) = @_;
                 return $t->getNodeValue()->description();
                 });
@@ -128,7 +128,7 @@ This method will give back and array of descendents in depth-first order (pre-or
 
 =head1 BUGS
 
-None that I am aware of. Of course, if you find a bug, let me know, and I will be sure to fix it. 
+None that I am aware of. Of course, if you find a bug, let me know, and I will be sure to fix it.
 
 =head1 CODE COVERAGE
 
@@ -149,7 +149,7 @@ Copyright 2004, 2005 by Infinity Interactive, Inc.
 L<http://www.iinteractive.com>
 
 This library is free software; you can redistribute it and/or modify
-it under the same terms as Perl itself. 
+it under the same terms as Perl itself.
 
 =cut
 

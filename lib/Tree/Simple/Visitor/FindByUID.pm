@@ -21,7 +21,7 @@ sub new {
 
 sub _init {
     my ($self) = @_;
-    $self->{success} = 0;    
+    $self->{success} = 0;
     $self->{UID_to_find} = undef;
     $self->SUPER::_init();
 }
@@ -48,48 +48,48 @@ sub visit {
     $self->{success} = 0;
 
     my $UID = $self->{UID_to_find};
-    (defined($UID)) || die "Illegal Operation : You cannot search for a UID without setting one first";        
+    (defined($UID)) || die "Illegal Operation : You cannot search for a UID without setting one first";
     # create our filter function
     # NOTE:
-    # in order to get an immediate exit 
+    # in order to get an immediate exit
     # from the traversal once a match is
     # found, we use 'die'. It is a somewhat
     # unorthodox way of using this, but it
-    # works. The found tree is propogated 
-    # up the call chain and returned from 
+    # works. The found tree is propogated
+    # up the call chain and returned from
     # this function.
 	my $func;
     if ($self->{_filter_function}) {
-        $func = sub { 
+        $func = sub {
             my ($tree, $test) = @_;
             (($tree->getUID() eq $UID) &&  $self->{_filter_function}->($tree)) && die $tree;
-            };    
+            };
     }
     else {
-        $func = sub { 
+        $func = sub {
             my ($tree, $test) = @_;
             ($tree->getUID() eq $UID) && die $tree;
-            };  
+            };
     }
 
     # we eval this so we can catch the tree
     # match when it is thrown with 'die'
     eval {
         unless (defined($self->{traversal_method})) {
-            # include the trunk in our 
+            # include the trunk in our
             # search if needed
-            $func->($tree) if $self->includeTrunk();        
+            $func->($tree) if $self->includeTrunk();
             # and traverse
             $tree->traverse($func);
         }
         else {
-            # include the trunk in our 
+            # include the trunk in our
             # search if needed
             $self->{traversal_method}->includeTrunk(1) if $self->includeTrunk();
-            # and visit            
+            # and visit
             $self->{traversal_method}->setNodeFilter($func);
             $self->{traversal_method}->visit($tree);
-        }  
+        }
     };
     # now see what we have ...
     if ($@) {
@@ -108,8 +108,8 @@ sub visit {
         }
     }
     else {
-        # if no exception is thrown though, 
-        # we failed in our search, and so we 
+        # if no exception is thrown though,
+        # we failed in our search, and so we
         # set our success flag to false
         $self->{success} = 0;
     }
@@ -117,7 +117,7 @@ sub visit {
 
 sub getResult {
     my ($self) = @_;
-    # if we did not succeed, then 
+    # if we did not succeed, then
     # we return undef, ...
     return undef unless $self->{success};
     # otherwise we return the results
@@ -135,24 +135,24 @@ Tree::Simple::Visitor::FindByUID - A Visitor for finding an element in a Tree::S
 =head1 SYNOPSIS
 
   use Tree::Simple::Visitor::FindByUID;
-  
+
   # create a visitor object
   my $visitor = Tree::Simple::Visitor::FindByUID->new();
-  
-  # set the search path for our tree  
+
+  # set the search path for our tree
   $visitor->searchForUID("MyTreeUID");
-  
+
   # pass the visitor to a tree
   $tree->accept($visitor);
-  
-  # fetch the result, which will 
-  # be the Tree::Simple object that 
+
+  # fetch the result, which will
+  # be the Tree::Simple object that
   # we have found, or undefined
   my $result = $visitor->getResult() || die "No Tree found";
 
 =head1 DESCRIPTION
 
-Given a UID and Tree::Simple hierarchy, this Visitor will attempt to find the node with the same UID. 
+Given a UID and Tree::Simple hierarchy, this Visitor will attempt to find the node with the same UID.
 
 =head1 METHODS
 
@@ -164,7 +164,7 @@ There are no arguments to the constructor the object will be in its default stat
 
 =item B<includeTrunk ($boolean)>
 
-Based upon the value of C<$boolean>, this will tell the visitor to include the trunk of the tree in the search as well. 
+Based upon the value of C<$boolean>, this will tell the visitor to include the trunk of the tree in the search as well.
 
 =item B<setTraversalMethod ($visitor)>
 
@@ -190,7 +190,7 @@ This method will return the tree found with the specified UID (set by the C<sear
 
 =head1 BUGS
 
-None that I am aware of. Of course, if you find a bug, let me know, and I will be sure to fix it. 
+None that I am aware of. Of course, if you find a bug, let me know, and I will be sure to fix it.
 
 =head1 CODE COVERAGE
 
@@ -219,7 +219,7 @@ Copyright 2004, 2005 by Infinity Interactive, Inc.
 L<http://www.iinteractive.com>
 
 This library is free software; you can redistribute it and/or modify
-it under the same terms as Perl itself. 
+it under the same terms as Perl itself.
 
 =cut
 

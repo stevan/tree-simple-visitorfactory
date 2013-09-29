@@ -22,7 +22,7 @@ sub new {
 sub visit {
 	my ($self, $tree) = @_;
 	(blessed($tree) && $tree->isa("Tree::Simple"))
-		|| die "Insufficient Arguments : You must supply a valid Tree::Simple object"; 
+		|| die "Insufficient Arguments : You must supply a valid Tree::Simple object";
     # grab our filter (if we have one)
     my $filter = $self->getNodeFilter();
     my @results;
@@ -30,10 +30,10 @@ sub visit {
     $self->_buildArray($tree, \@results, $filter);
     # add the trunk if we need to
     @results = (
-            ((defined($filter)) ? 
-                    $filter->($tree) 
-                    : 
-                    $tree->getNodeValue()), 
+            ((defined($filter)) ?
+                    $filter->($tree)
+                    :
+                    $tree->getNodeValue()),
             [ @results ]
         ) if $self->includeTrunk();
     # set results
@@ -68,22 +68,22 @@ Tree::Simple::Visitor::ToNestedArray - A Visitor for creating nested array trees
                 ->addChildren(
                     Tree::Simple->new("Child1")
                         ->addChildren(
-                            Tree::Simple->new("GrandChild1"),                
+                            Tree::Simple->new("GrandChild1"),
                             Tree::Simple->new("GrandChild2")
                         ),
                     Tree::Simple->new("Child2"),
-                );  
+                );
 
   # include the trunk (Root)
   $visitor->includeTrunk(1);
-  
+
   # visit the tree
   $tree->accept($visitor);
 
   my $array_tree = $visitor->getResults();
   # this then creates the equivalent nested array tree:
-  # [  
-  # 'Root', [ 
+  # [
+  # 'Root', [
   #     'Child1', [
   #             'GrandChild1',
   #             'GrandChild2'
@@ -91,13 +91,13 @@ Tree::Simple::Visitor::ToNestedArray - A Visitor for creating nested array trees
   #     'Child2'
   #     ]
   # ]
-  
+
   # if you don't include the trunk (Root) then ...
   $tree->accept($visitor);
 
   my $array_tree = $visitor->getResults();
-  # this then creates the following nested array tree:  
-  # [ 
+  # this then creates the following nested array tree:
+  # [
   #   'Child1', [
   #           'GrandChild1',
   #           'GrandChild2'
@@ -105,9 +105,9 @@ Tree::Simple::Visitor::ToNestedArray - A Visitor for creating nested array trees
   #   'Child2'
   # ]
 
-=head1 DESCRIPTION 
+=head1 DESCRIPTION
 
-Given a tree constructed from a Tree::Simple heirarchy, this Visitor will create the equivalent tree of nested arrays. 
+Given a tree constructed from a Tree::Simple heirarchy, this Visitor will create the equivalent tree of nested arrays.
 
 =head1 METHODS
 
@@ -137,7 +137,7 @@ This method will return the array tree constructed.
 
 =head1 BUGS
 
-None that I am aware of. Of course, if you find a bug, let me know, and I will be sure to fix it. 
+None that I am aware of. Of course, if you find a bug, let me know, and I will be sure to fix it.
 
 =head1 CODE COVERAGE
 
@@ -158,6 +158,6 @@ Copyright 2004, 2005 by Infinity Interactive, Inc.
 L<http://www.iinteractive.com>
 
 This library is free software; you can redistribute it and/or modify
-it under the same terms as Perl itself. 
+it under the same terms as Perl itself.
 
 =cut
