@@ -1,4 +1,3 @@
-
 package Tree::Simple::VisitorFactory;
 
 use strict;
@@ -43,7 +42,7 @@ Tree::Simple::VisitorFactory - A factory object for dispensing Visitor objects
 
 =head1 DESCRIPTION
 
-This object is really just a factory for dispensing Tree::Simple::Visitor::* objects. It is not required to use this package in order to use all the Visitors, it is just a somewhat convienient way to avoid having to type thier long class names.
+This object is really just a factory for dispensing Tree::Simple::Visitor::* objects. It is not required to use this package in order to use all the Visitors, it is just a somewhat convenient way to avoid having to type their long class names.
 
 I considered making this a Singleton, but I did not because I thought that some people might not want that. I know that I am very picky about using Singletons, especially in multiprocess environments like mod_perl, so I implemented the smallest instance I knew how to, and made sure all other methods could be called as class methods too.
 
@@ -57,7 +56,7 @@ Returns an minimal instance of this object, basically just a reference back to t
 
 =item B<get ($visitor_type)>
 
-Attempts to load the C<$visitor_type> and returns an instance of it if successfull. If no C<$visitor_type> is specified an exception is thrown, if C<$visitor_type> fails to load, and exception is thrown.
+Attempts to load the C<$visitor_type> and returns an instance of it if successful. If no C<$visitor_type> is specified an exception is thrown, if C<$visitor_type> fails to load, and exception is thrown.
 
 =item B<getVisitor ($visitor_type)>
 
@@ -67,9 +66,9 @@ This is an alias of C<get>.
 
 =head1 AVAILABLE VISITORS
 
-This distibution provides a number of Visitor objects which can be loaded just by giving their name. Below is a description of the available Visitors and a sort description of what they do. I have attempted to classify the Visitors into groups which are related to their use.
+This distribution provides a number of Visitor objects which can be loaded just by giving their name. Below is a description of the available Visitors and a sort description of what they do. I have attempted to classify the Visitors into groups which are related to their use.
 
-This factory will load any module contained inside the B<Tree::Simple::Visitor::*> namespace. Given a name, it will attempt to C<require> the module B<Tree::Simple::Visitor::E<lt>I<Name>E<gt>.pm>. This allows others to create Visitors which can be accessed with this factory, without needed to include them in this distrobution.
+This factory will load any module contained inside the B<Tree::Simple::Visitor::*> namespace. Given a name, it will attempt to C<require> the module B<Tree::Simple::Visitor::E<lt>I<Name>E<gt>.pm>. This allows others to create Visitors which can be accessed with this factory, without needed to include them in this distribution.
 
 =head2 Search/Path Related Visitors
 
@@ -131,19 +130,19 @@ This visitor can be used to create a set of directories and files from a Tree::S
 
 =item B<FromNestedArray>
 
-Given a tree constructed from nested arrays, this Visitor will create the equivalent Tree::Simple heirarchy.
+Given a tree constructed from nested arrays, this Visitor will create the equivalent Tree::Simple hierarchy.
 
 =item B<ToNestedArray>
 
-Given a Tree::Simple heirarchy, this Visitor will create the equivalent tree constructed from nested arrays.
+Given a Tree::Simple hierarchy, this Visitor will create the equivalent tree constructed from nested arrays.
 
 =item B<FromNestedHash>
 
-Given a tree constructed from nested hashs, this Visitor will create the equivalent Tree::Simple heirarchy.
+Given a tree constructed from nested hashs, this Visitor will create the equivalent Tree::Simple hierarchy.
 
 =item B<ToNestedHash>
 
-Given a Tree::Simple heirarchy, this Visitor will create the equivalent tree constructed from nested hashes.
+Given a Tree::Simple hierarchy, this Visitor will create the equivalent tree constructed from nested hashes.
 
 =back
 
@@ -167,7 +166,7 @@ Given a Tree::Simple instance this Visitor will return all the descendents recur
 
 =item B<Sort>
 
-This implements a multi-level sort of a Tree::Simple heirarchy.
+This implements a multi-level sort of a Tree::Simple hierarchy.
 
 =item B<VariableDepthClone>
 
