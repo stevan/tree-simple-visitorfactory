@@ -1,4 +1,3 @@
-
 package Tree::Simple::Visitor::FindByPath;
 
 use strict;
@@ -68,7 +67,7 @@ sub visit {
     # check to see if we have been
     # asked to include the trunk
     if ($self->includeTrunk()) {
-        # if we dont match the root of the path
+        # if we don't match the root of the path
         # then we have failed already and so return
         $self->setResults(()) && return
             unless $func->($current_tree, $path[0]);
@@ -82,7 +81,7 @@ sub visit {
             # store the current tree as
             # our last result
             $self->setResults(@results, $current_tree);
-            # and set the sucess flag
+            # and set the success flag
             $self->{success} = 1;
             return;
         }
@@ -201,7 +200,7 @@ None that I am aware of. Of course, if you find a bug, let me know, and I will b
 
 =head1 CODE COVERAGE
 
-See the B<CODE COVERAGE> section in L<Tree::Simple::VisitorFactory> for more inforamtion.
+See the B<CODE COVERAGE> section in L<Tree::Simple::VisitorFactory> for more information.
 
 =head1 SEE ALSO
 
