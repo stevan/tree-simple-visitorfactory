@@ -1,4 +1,3 @@
-
 package Tree::Simple::Visitor::PostOrderTraversal;
 
 use strict;
@@ -41,7 +40,7 @@ sub visit {
         # if we are root and we are not including the trunk then
         # we can return our results now
         return @results if $current_tree->isRoot() && !$self->includeTrunk();
-        # however, if we dont meet those conditions, then we
+        # however, if we don't meet those conditions, then we
         # need to process the current tree and add it to our
         # results
         push @results => (($filter_function) ?
@@ -124,7 +123,7 @@ None that I am aware of. Of course, if you find a bug, let me know, and I will b
 
 =head1 CODE COVERAGE
 
-See the B<CODE COVERAGE> section in L<Tree::Simple::VisitorFactory> for more inforamtion.
+See the B<CODE COVERAGE> section in L<Tree::Simple::VisitorFactory> for more information.
 
 =head1 SEE ALSO
 

@@ -1,4 +1,3 @@
-
 package Tree::Simple::Visitor::PreOrderTraversal;
 
 use strict;
@@ -52,7 +51,7 @@ Tree::Simple::Visitor::PreOrderTraversal - A Visitor for pre-order traversal a T
 
 =head1 DESCRIPTION
 
-Pre-order traversal is a depth-first traversal method in which the sub-tree's are processed I<after> the parent. It is essentially a wrapper around the base Tree::Simple::Visitor class, and is a seperate module here for completeness. (If you have a post-order, you should have a pre-order too).
+Pre-order traversal is a depth-first traversal method in which the sub-tree's are processed I<after> the parent. It is essentially a wrapper around the base Tree::Simple::Visitor class, and is a separate module here for completeness. (If you have a post-order, you should have a pre-order too).
 
 =head1 METHODS
 
@@ -86,7 +85,7 @@ None that I am aware of. Of course, if you find a bug, let me know, and I will b
 
 =head1 CODE COVERAGE
 
-See the B<CODE COVERAGE> section in L<Tree::Simple::VisitorFactory> for more inforamtion.
+See the B<CODE COVERAGE> section in L<Tree::Simple::VisitorFactory> for more information.
 
 =head1 SEE ALSO
 

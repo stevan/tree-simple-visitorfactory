@@ -1,4 +1,3 @@
-
 package Tree::Simple::Visitor::Sort;
 
 use strict;
@@ -90,7 +89,7 @@ __END__
 
 =head1 NAME
 
-Tree::Simple::Visitor::Sort - A Visitor for sorting a Tree::Simple object heirarchy
+Tree::Simple::Visitor::Sort - A Visitor for sorting a Tree::Simple object hierarchy
 
 =head1 SYNOPSIS
 
@@ -120,7 +119,7 @@ Tree::Simple::Visitor::Sort - A Visitor for sorting a Tree::Simple object heirar
 
 =head1 DESCRIPTION
 
-This implements a recursive multi-level sort of a Tree::Simple heirarchy. I think this deserves some more explaination, and the best way to do that is visually.
+This implements a recursive multi-level sort of a Tree::Simple hierarchy. I think this deserves some more explanation, and the best way to do that is visually.
 
 Given the tree:
 
@@ -237,7 +236,7 @@ None that I am aware of. Of course, if you find a bug, let me know, and I will b
 
 =head1 CODE COVERAGE
 
-See the B<CODE COVERAGE> section in L<Tree::Simple::VisitorFactory> for more inforamtion.
+See the B<CODE COVERAGE> section in L<Tree::Simple::VisitorFactory> for more information.
 
 =head1 SEE ALSO
 

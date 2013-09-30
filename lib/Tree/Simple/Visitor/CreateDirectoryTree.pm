@@ -1,4 +1,3 @@
-
 package Tree::Simple::Visitor::CreateDirectoryTree;
 
 use strict;
@@ -155,7 +154,7 @@ Obviously since files themselves are leaf nodes, this makes sense that non-leave
 
 =item Any node (including leaf nodes) which ends in either the character C</> or C<\> is considered a directory.
 
-I think it is a pretty standard convention to have directory names ending in a seperator. The seperator itself is stripped off before the directory name is passed to File::Spec where the platform specific directory path is created. This means that it does not matter which one you use, it will be completely cross platform (at least as cross-platform as File::Spec is).
+I think it is a pretty standard convention to have directory names ending in a separator. The separator itself is stripped off before the directory name is passed to File::Spec where the platform specific directory path is created. This means that it does not matter which one you use, it will be completely cross platform (at least as cross-platform as File::Spec is).
 
 =item All other nodes are considered to be files.
 
@@ -169,7 +168,7 @@ None that I am aware of. Of course, if you find a bug, let me know, and I will b
 
 =head1 CODE COVERAGE
 
-See the B<CODE COVERAGE> section in L<Tree::Simple::VisitorFactory> for more inforamtion.
+See the B<CODE COVERAGE> section in L<Tree::Simple::VisitorFactory> for more information.
 
 =head1 SEE ALSO
 

@@ -1,4 +1,3 @@
-
 package Tree::Simple::Visitor::LoadClassHierarchy;
 
 use strict;
@@ -136,13 +135,13 @@ There are no arguments to the constructor the object will be in its default stat
 
 =item B<includeTrunk ($boolean)>
 
-Setting the C<$boolean> value to true (C<1>) will cause the node value of the C<$tree> object passed into C<visit> to be set with the root value found in the class heirarchy. Setting it to false (C<0>), or not setting it, will result in the first value in the class heirarchy creating a new node level.
+Setting the C<$boolean> value to true (C<1>) will cause the node value of the C<$tree> object passed into C<visit> to be set with the root value found in the class hierarchy. Setting it to false (C<0>), or not setting it, will result in the first value in the class hierarchy creating a new node level.
 
 =item B<includeMethods ($boolean)>
 
 Setting the C<$boolean> value to true (C<1>) will cause methods to be added as a children of the class node. Setting it to false (C<0>), or not setting it, will result in this not happening.
 
-B<NOTE:> Methods are sorted ascii-betically before they are added to the tree. This allows a more predictable heirarchy.
+B<NOTE:> Methods are sorted ascii-betically before they are added to the tree. This allows a more predictable hierarchy.
 
 =item B<setClass ($class)>
 
@@ -180,7 +179,7 @@ None that I am aware of. Of course, if you find a bug, let me know, and I will b
 
 =head1 CODE COVERAGE
 
-See the B<CODE COVERAGE> section in L<Tree::Simple::VisitorFactory> for more inforamtion.
+See the B<CODE COVERAGE> section in L<Tree::Simple::VisitorFactory> for more information.
 
 =head1 SEE ALSO
 

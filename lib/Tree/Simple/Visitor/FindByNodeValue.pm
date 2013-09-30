@@ -1,4 +1,3 @@
-
 package Tree::Simple::Visitor::FindByNodeValue;
 
 use strict;
@@ -55,7 +54,7 @@ sub visit {
     # from the traversal once a match is
     # found, we use 'die'. It is a somewhat
     # unorthodox way of using this, but it
-    # works. The found tree is propogated
+    # works. The found tree is propagated
     # up the call chain and returned from
     # this function.
 	my $func;
@@ -194,7 +193,7 @@ None that I am aware of. Of course, if you find a bug, let me know, and I will b
 
 =head1 CODE COVERAGE
 
-See the B<CODE COVERAGE> section in L<Tree::Simple::VisitorFactory> for more inforamtion.
+See the B<CODE COVERAGE> section in L<Tree::Simple::VisitorFactory> for more information.
 
 =head1 SEE ALSO
 
