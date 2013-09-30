@@ -16,5 +16,10 @@ WriteMakefile
 		'Test::Exception' => 0.15,
 		'Tree::Simple'    => 1.12,
 		'warnings'        => 0,
-	}
+	},
+	META_MERGE  => {
+		resources => {
+			repository => 'https://github.com/stevan/tree-simple-visitorfactory',
+		},
+	},
 );

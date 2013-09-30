@@ -27,4 +27,9 @@ Module::Build -> new
 		'strict'       => 0,
 		'warnings'     => 0,
 	},
+	meta_merge => {
+		resources => {
+			repository => 'https://github.com/stevan/tree-simple-visitorfactory',
+		},
+	},
 ) -> create_build_script();
