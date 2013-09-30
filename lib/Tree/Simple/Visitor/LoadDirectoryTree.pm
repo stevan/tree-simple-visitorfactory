@@ -1,4 +1,3 @@
-
 package Tree::Simple::Visitor::LoadDirectoryTree;
 
 use strict;
@@ -159,7 +158,7 @@ This method accepts a CODE reference as its C<$filter_function> argument and thr
 
 =item B<setSortStyle ($sort_function)>
 
-This method accepts a CODE reference as its C<$sort_function> argument and throws an exception if it is not a code reference. This function is used to sort the individual levels of the directory tree right before it is added to the tree being built. The function is passed the the current path, followed by the two items being sorted. The reason for passing the path in is so that sorting operations can be performed on the entire path if desired.
+This method accepts a CODE reference as its C<$sort_function> argument and throws an exception if it is not a code reference. This function is used to sort the individual levels of the directory tree right before it is added to the tree being built. The function is passed the current path, followed by the two items being sorted. The reason for passing the path in is so that sorting operations can be performed on the entire path if desired.
 
 Two pre-built functions are supplied and described below.
 
@@ -207,7 +206,7 @@ None that I am aware of. Of course, if you find a bug, let me know, and I will b
 
 =head1 CODE COVERAGE
 
-See the B<CODE COVERAGE> section in L<Tree::Simple::VisitorFactory> for more inforamtion.
+See the B<CODE COVERAGE> section in L<Tree::Simple::VisitorFactory> for more information.
 
 =head1 SEE ALSO
 
