@@ -1,5 +1,9 @@
 Revision history for Perl extension Tree::Simple::VisitorFactory:
 
+0.12  Unreleased
+	- Many, many doc typo fixes via github from dsteinbrunner.
+	- Add repos to Build.PL and Makefile.PL.
+
 0.11  Mon Sep 23 11:07:00 2013
 	- Maintenance now by Ron Savage.
 	- Rectify datestamp format in this file.
