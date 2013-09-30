@@ -1,4 +1,3 @@
-
 package Tree::Simple::Visitor::ToNestedArray;
 
 use strict;
@@ -107,7 +106,7 @@ Tree::Simple::Visitor::ToNestedArray - A Visitor for creating nested array trees
 
 =head1 DESCRIPTION
 
-Given a tree constructed from a Tree::Simple heirarchy, this Visitor will create the equivalent tree of nested arrays.
+Given a tree constructed from a Tree::Simple hierarchy, this Visitor will create the equivalent tree of nested arrays.
 
 =head1 METHODS
 
@@ -141,7 +140,7 @@ None that I am aware of. Of course, if you find a bug, let me know, and I will b
 
 =head1 CODE COVERAGE
 
-See the B<CODE COVERAGE> section in L<Tree::Simple::VisitorFactory> for more inforamtion.
+See the B<CODE COVERAGE> section in L<Tree::Simple::VisitorFactory> for more information.
 
 =head1 SEE ALSO
 
