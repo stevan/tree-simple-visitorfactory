@@ -1,4 +1,3 @@
-
 package Tree::Simple::Visitor::FromNestedHash;
 
 use strict;
@@ -111,7 +110,7 @@ Tree::Simple::Visitor::FromNestedHash - A Visitor for creating Tree::Simple obje
 
 =head1 DESCRIPTION
 
-Given a tree constructed from nested hashs, this Visitor will create the equivalent Tree::Simple heirarchy.
+Given a tree constructed from nested hashes, this Visitor will create the equivalent Tree::Simple hierarchy.
 
 =head1 METHODS
 
@@ -127,7 +126,7 @@ This method accepts a CODE reference as its C<$filter_function> argument and thr
 
 =item B<setHashTree ($hash_tree)>
 
-This method is used to set the C<$hash_tree> that our Tree::Simple heirarchy will be constructed from. It must be in the following form:
+This method is used to set the C<$hash_tree> that our Tree::Simple hierarchy will be constructed from. It must be in the following form:
 
   {
     Root => {
@@ -141,7 +140,7 @@ This method is used to set the C<$hash_tree> that our Tree::Simple heirarchy wil
 
 Basically each key in the hash is considered a node, values are ignored unless it is a hash reference with at least one key in it, in which case it is interpreted as containing the children of the node created from the key.
 
-The tree is validated prior being accepted, if it fails validation an execption will be thrown. The rules are as follows;
+The tree is validated prior being accepted, if it fails validation an exception will be thrown. The rules are as follows;
 
 =over 4
 
@@ -169,7 +168,7 @@ None that I am aware of. Of course, if you find a bug, let me know, and I will b
 
 =head1 CODE COVERAGE
 
-See the B<CODE COVERAGE> section in L<Tree::Simple::VisitorFactory> for more inforamtion.
+See the B<CODE COVERAGE> section in L<Tree::Simple::VisitorFactory> for more information.
 
 =head1 SEE ALSO
 
