@@ -152,7 +152,7 @@ Given a Tree::Simple hierarchy, this Visitor will create the equivalent tree con
 
 =item B<LoadClassHierarchy>
 
-Given a class name or instance, this Visitor will create a Tree::Simple hierarchy which models the classes inheritance heirarchy.
+Given a class name or instance, this Visitor will create a Tree::Simple hierarchy which models the classes inheritance hierarchy.
 
 =back
 
