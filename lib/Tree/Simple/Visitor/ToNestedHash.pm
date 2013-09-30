@@ -1,4 +1,3 @@
-
 package Tree::Simple::Visitor::ToNestedHash;
 
 use strict;
@@ -93,7 +92,7 @@ Tree::Simple::Visitor::ToNestedHash - A Visitor for creating nested hash trees f
 
 =head1 DESCRIPTION
 
-Given a tree constructed from a Tree::Simple heirarchy, this Visitor will create the equivalent tree of nested hashes.
+Given a tree constructed from a Tree::Simple hierarchy, this Visitor will create the equivalent tree of nested hashes.
 
 =head1 METHODS
 
@@ -127,7 +126,7 @@ None that I am aware of. Of course, if you find a bug, let me know, and I will b
 
 =head1 CODE COVERAGE
 
-See the B<CODE COVERAGE> section in L<Tree::Simple::VisitorFactory> for more inforamtion.
+See the B<CODE COVERAGE> section in L<Tree::Simple::VisitorFactory> for more information.
 
 =head1 SEE ALSO
 
