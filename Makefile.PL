@@ -9,13 +9,15 @@ WriteMakefile
 	VERSION_FROM => 'lib/Tree/Simple/VisitorFactory.pm',
 	PREREQ_PM    =>
 	{
-		'File::Spec'      => 0.60,
-		'Scalar::Util'    => 1.10,
-		'strict'          => 0,
-		'Test::More'      => 0.47,
-		'Test::Exception' => 0.15,
-		'Tree::Simple'    => 1.12,
-		'warnings'        => 0,
+		'base'                  => 2.16,
+		'File::Spec'            => 0.60,
+		'Scalar::Util'          => 1.10,
+		'Test::More'            => 0.47,
+		'Test::Exception'       => 0.15,
+		'Tree::Simple'          => 1.12,
+		'Tree::Simple::Visitor' => 1.22,
+		'strict'                => 0,
+		'warnings'              => 0,
 	},
 	META_MERGE  => {
 		resources => {

@@ -73,6 +73,8 @@ requires:
   File::Spec: 0.6
   Scalar::Util: 1.1
   Tree::Simple: 1.12
+  Tree::Simple::Visitor: 1.22
+  base: 2.16
   strict: 0
   warnings: 0
 resources:

@@ -21,11 +21,13 @@ Module::Build -> new
 	},
 	requires =>
 	{
-		'File::Spec'   => 0.60,
-		'Scalar::Util' => 1.10,
-		'Tree::Simple' => 1.12,
-		'strict'       => 0,
-		'warnings'     => 0,
+		'base'                  => 2.16,
+		'File::Spec'            => 0.60,
+		'Scalar::Util'          => 1.10,
+		'Tree::Simple'          => 1.12,
+		'Tree::Simple::Visitor' => 1.22,
+		'strict'                => 0,
+		'warnings'              => 0,
 	},
 	meta_merge => {
 		resources => {
